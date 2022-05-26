@@ -14,8 +14,8 @@ IPAddress gateway(192, 168, 0, 1);
 IPAddress subnet(255, 255, 255, 0);
 
 //SSID and Password to connect to wifi
-const char *ssid = "Tobik_Hata";
-const char *password = "P4npYfYS";
+const char *ssid = "ssid";
+const char *password = "password";
 
 ESP8266WebServer server(80);
 
