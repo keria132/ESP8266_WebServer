@@ -3,7 +3,7 @@
 #include <ESP8266WiFi.h>
 #include "DHT.h"
 unsigned long timer, resetTimer; //timer to send data once in some time interval
-int id = 2;
+int id = 2; //to identify from which esp data will be received
 
 //DHT sensor
 #define DHTTYPE DHT22   // Define dht type - DHT 22
@@ -13,8 +13,8 @@ float Temperature;
 float Humidity;
 
 //SSID and Password to connect to wifi
-const char *ssid = "Tobik_Hata";
-const char *password = "P4npYfYS";
+const char *ssid = "ssid";
+const char *password = "password";
 
 
 void setup() {
