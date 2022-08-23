@@ -4,7 +4,6 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
         <title>ESP8266 Main-hub</title>
-        <link rel="icon" type="image/x-icon" href="favicon.ico">
         <link rel="stylesheet" type="text/css" href="style.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,9 +32,9 @@
                 </div>
                 <div class="relays">
                     <h3 class="relays__heading relays__lights-h1">Lights</h3>
-                    <input type="checkbox" class="relays__button relays__lights" onClick="" />
+                    <input type="checkbox" class="relays__button relays__lights" onClick="checkboxSwitch(0, 0)" />
                     <h3 class="relays__heading relays__power-h1">Power</h3>
-                    <input type="checkbox" class="relays__button relays__power" onClick=""/>
+                    <input type="checkbox" class="relays__button relays__power" onClick="checkboxSwitch(0, 1)"/>
                 </div>
                 <p class="room__status"></p>
             </section>
@@ -56,9 +55,9 @@
                 </div>
                 <div class="relays">
                     <h3 class="relays__heading relays__lights-h1">Lights</h3>
-                    <input type="checkbox" class="relays__button relays__lights" onClick="" />
+                    <input type="checkbox" class="relays__button relays__lights" onClick="checkboxSwitch(1, 0)" />
                     <h3 class="relays__heading relays__power-h1">Power</h3>
-                    <input type="checkbox" class="relays__button relays__power" onClick=""/>
+                    <input type="checkbox" class="relays__button relays__power" onClick="checkboxSwitch(1, 1)"/>
                 </div>
                 <p class="room__status"></p>
             </section>
@@ -99,6 +98,9 @@
         
         roomsTempBar = document.querySelectorAll(".room .temperature__progress-bar-fill"),
         roomsHumBar = document.querySelectorAll(".room .humidity__progress-bar-fill"),
+
+        roomsRelays = document.querySelectorAll(".room .relays__button"),
+
         roomsStatus = document.querySelectorAll(".room .room__status");
 
         function getData(){
@@ -107,13 +109,19 @@
                 if (this.readyState == 4 && this.status == 200) {
                     let data = JSON.parse(this.responseText);
                     let i = 0;
+                    let relayStats = [];
+
                     for(const key in data){
+                        
                         rooms[i].style.display = "flex";
                         roomsTemp[i].innerHTML = data[key][0] + "°C";
                         roomsHum[i].innerHTML = data[key][1] + "%";
 
                         roomsTempBar[i].style.width = data[key][0] * 2 + "%";
                         roomsHumBar[i].style.width = data[key][1] + "%";
+
+                        relayStats.push(data[key][4]);
+                        relayStats.push(data[key][5]);
 
                         if(data[key][2] == -1){
                             roomsStatus[i].innerHTML = "Data is corrupted!";
@@ -126,15 +134,31 @@
                             rooms[i].style.opacity = "1";
                             if(i==0){roomsStatus[i].innerHTML = "Status: ok"}   //Status for the main room
                         }
-
-                        console.log();
                         i++;
+                    }
+
+                    for(let i = 0; i<relayStats.length; i++){
+                        roomsRelays[i].checked = Boolean(relayStats[i]);
                     }
 
                     console.log(data);
                 }
             };
             xhttp.open("GET", "/getData", true);
+            xhttp.send();
+        }
+
+        function checkboxSwitch(roomNum, checkboxNum){
+            let xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function(){
+                if (this.readyState == 4 && this.status == 200) {
+                    
+                    let response = Number(this.responseText);
+                    roomsRelays[roomNum * 2 + checkboxNum].checked = Boolean(response);
+
+                }
+            }
+            xhttp.open("GET", "/checkboxSwitch/?roomNum=" + roomNum + "&checkboxNum=" + checkboxNum, true);
             xhttp.send();
         }
 
