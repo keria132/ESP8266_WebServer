@@ -1,6 +1,6 @@
 # ESP8266_AsyncWebServer
-//Just my personal project i did for myself out of curiosity;
-//Coded in Arduino IDE;
+- Just my personal project i did for myself out of curiosity;
+- Coded in Arduino IDE;
 
 It's ESP8266 server with simple communication between other esp8266 devices.
 Shows DHT data from all the devices and controls relays on them;
