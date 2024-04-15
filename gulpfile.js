@@ -73,11 +73,9 @@ function watchFiles(){
 }
 
 //Build production version
-
 function build(cb){
 
     gulp.src('./src/sass/**/*.scss')
-		.pipe(sourcemaps.init())
 		.pipe(sass().on('error', sass.logError))
 		.pipe(cleanCss({compatibility: 'ie8'}))
 		.on('error', console.error.bind(console))
@@ -93,21 +91,18 @@ function build(cb){
                         'IE 11'],
 			{ cascade: false }))
 		.pipe(rename({suffix: '.min'}))
-		.pipe(sourcemaps.write('./') )
-		.pipe(gulp.dest('./build/css/'));
+		.pipe(gulp.dest('./ESP_SERVER/data/'));
 
 	gulp.src('./src/js/script.js')
-        .pipe(sourcemaps.init())
         .pipe(uglify())
         .pipe(rename({suffix: '.min'}))
-        .pipe(sourcemaps.write('.'))
-		.pipe(gulp.dest('./build/js/'));
+		.pipe(gulp.dest('./ESP_SERVER/data/'));
 
 	gulp.src('./src/assets/*.*')
-		.pipe( gulp.dest('./build/assets'));
+		.pipe( gulp.dest('./ESP_SERVER/data'));
 		
-	gulp.src('./src/index.html')
-			.pipe( gulp.dest('./build/') );
+	gulp.src('./index.html')
+			.pipe( gulp.dest('./ESP_SERVER/data') );
 	
 	cb();
 }
