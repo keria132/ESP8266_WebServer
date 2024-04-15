@@ -4,39 +4,79 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>IOT-app</title>
+  <link rel="stylesheet" href="./src/css/style.min.css">
+  <link rel="stylesheet" href="./src/css/normalize.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
 </head>
 <body>
+  <header>
+
+  </header>
   <main>
-    <section class="mainPage">
-      <h1 class="mainPage__heading">Hello, Kirill!</h1>
-      <small class="mainPage__sub">Welcome home</small>
+    <section class="mainPage container">
+      <div class="mainPage__heading">
+        <h1>Hello, Kirill!</h1>
+        <small>Welcome home</small>
+      </div>
+      
+      <div class="mainPageWidget">
+        <div class="mainPageWidget__icon">⛅</div>
+        <!-- <img class="mainPageWidget__icon" src="./src/assets/partly__cloudy.svg" alt=""> -->
+        <h2 class="mainPageWidget__weather">Mostly cloudy</h2>
+        <small class="mainPageWidget__location">Sydney, Australia</small>
+        <p class="mainPageWidget__temperature">22°</p>
+        <span class="mainPageWidget__details">
+          <p>22°C</p>
+          <small>Sensible</small>
+        </span>
+        <span class="mainPageWidget__details">
+          <p>4%</p>
+          <small>Participation</small>
+        </span>
+        <span class="mainPageWidget__details">
+          <p>66%</p>
+          <small>Humidity</small>
+        </span>
+        <span class="mainPageWidget__details">
+          <p>16 km/h</p>
+          <small>Wind</small>
+        </span>
+      </div>
 
-      <div>
-        <img src="./src/assets/partly__cloudy.svg" alt="">
-        <div>
-          <h3>Mostly cloudy</h3>
-          <p>Sydney, Australia</p>
+      <div class="mainPageDevices">
+        <h2 class="mainPageDevices__heading">Your devices</h2>
+        <div class="device">
+          <h3 class="device__heading">Lights</h3>
+          <img src="./src/assets/lights__icon.svg" alt="" class="device__icon">
+          <label class="device__switch">
+              <input type="checkbox" />
+              <span></span>
+          </label>
+          <small>off</small>
         </div>
-        <p>22°</p>
-
-        <span>
-          <p></p>
-          <small></small>
-        </span>
-        <span>
-          <p></p>
-          <small></small>
-        </span>
-        <span>
-          <p></p>
-          <small></small>
-        </span>
-        <span>
-          <p></p>
-          <small></small>
-        </span>
+        <div class="device">
+          <h3 class="device__heading">Lights</h3>
+          <img src="./src/assets/lights__icon.svg" alt="" class="device__icon">
+          <label class="device__switch">
+              <input type="checkbox" />
+              <span></span>
+          </label>
+          <small>off</small>
+        </div>
+        <div class="device">
+          <h3 class="device__heading">Lights</h3>
+          <img src="./src/assets/lights__icon.svg" alt="" class="device__icon">
+          <label class="device__switch">
+              <input type="checkbox" />
+              <span></span>
+          </label>
+          <small>off</small>
+        </div>
       </div>
     </section>
   </main>
+  <script src="./src/js/min/script.min.js"></script>
 </body>
 </html>
