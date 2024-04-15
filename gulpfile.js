@@ -25,28 +25,28 @@ function sync(cd){
 
 //SASS compile function
 function sassCompiler(cd){
-  gulp.src('./src/sass/**/*.scss')
-  .pipe(sourcemaps.init())
-  .pipe(sass().on('error', sass.logError))
-  .pipe(cleanCss({compatibility: 'ie8'}))
-  .on('error', console.error.bind(console))
-  .pipe(autoprefixer(
-      ['> 1%',
-      'last 2 versions',
-      'firefox >= 4',
-      'safari 7',
-      'safari 8',
-      'IE 8',
-      'IE 9',
-      'IE 10',
-      'IE 11'],
-  { cascade: false }))
-  .pipe(rename({suffix: '.min'}) )
-  .pipe(sourcemaps.write('.') )
-  .pipe(gulp.dest('./src/css/') )
-  .pipe(browserSync.stream() );
+    gulp.src('./src/sass/**/*.scss')
+    .pipe(sourcemaps.init())
+    .pipe(sass().on('error', sass.logError))
+    .pipe(cleanCss({compatibility: 'ie8'}))
+    .on('error', console.error.bind(console))
+    .pipe(autoprefixer(
+        ['> 1%',
+        'last 2 versions',
+        'firefox >= 4',
+        'safari 7',
+        'safari 8',
+        'IE 8',
+        'IE 9',
+        'IE 10',
+        'IE 11'],
+    { cascade: false }))
+    .pipe(rename({suffix: '.min'}) )
+    .pipe(sourcemaps.write('.') )
+    .pipe(gulp.dest('./src/css/') )
+    .pipe(browserSync.stream() );
 
-  cd();
+    cd();
 }
 
 //Javascript compile function
@@ -65,49 +65,49 @@ function javascript(cd){
 //Watch for files changes
 function watchFiles(){
 	gulp.watch('./*.html', function browserReload(done) {
-    browserSync.reload();
-    done();
-  });
+        browserSync.reload();
+        done();
+    });
 	gulp.watch('src/js/*.js', javascript);
-    gulp.watch('src/scss/*.scss', sassCompiler);
+    gulp.watch('src/sass/*.scss', sassCompiler);
 }
 
 //Build production version
 
 function build(cb){
 
-  gulp.src('./src/sass/**/*.scss')
-  .pipe(sourcemaps.init())
-  .pipe(sass().on('error', sass.logError))
-  .pipe(cleanCss({compatibility: 'ie8'}))
-  .on('error', console.error.bind(console))
-  .pipe(autoprefixer(
-    ['> 1%',
-    'last 2 versions',
-    'firefox >= 4',
-    'safari 7',
-    'safari 8',
-    'IE 8',
-    'IE 9',
-    'IE 10',
-    'IE 11'],
-    { cascade: false }))
-  .pipe(rename({suffix: '.min'}))
-  .pipe(sourcemaps.write('./') )
-  .pipe(gulp.dest('./build/css/'));
+    gulp.src('./src/sass/**/*.scss')
+		.pipe(sourcemaps.init())
+		.pipe(sass().on('error', sass.logError))
+		.pipe(cleanCss({compatibility: 'ie8'}))
+		.on('error', console.error.bind(console))
+		.pipe(autoprefixer(
+						['> 1%',
+                        'last 2 versions',
+                        'firefox >= 4',
+                        'safari 7',
+                        'safari 8',
+                        'IE 8',
+                        'IE 9',
+                        'IE 10',
+                        'IE 11'],
+			{ cascade: false }))
+		.pipe(rename({suffix: '.min'}))
+		.pipe(sourcemaps.write('./') )
+		.pipe(gulp.dest('./build/css/'));
 
 	gulp.src('./src/js/script.js')
-  .pipe(sourcemaps.init())
-  .pipe(uglify())
-  .pipe(rename({suffix: '.min'}))
-  .pipe(sourcemaps.write('.'))
-  .pipe(gulp.dest('./build/js/'));
+        .pipe(sourcemaps.init())
+        .pipe(uglify())
+        .pipe(rename({suffix: '.min'}))
+        .pipe(sourcemaps.write('.'))
+		.pipe(gulp.dest('./build/js/'));
 
 	gulp.src('./src/assets/*.*')
-	.pipe( gulp.dest('./build/assets'));
+		.pipe( gulp.dest('./build/assets'));
 		
 	gulp.src('./src/index.html')
-	.pipe( gulp.dest('./build/') );
+			.pipe( gulp.dest('./build/') );
 	
 	cb();
 }
