@@ -30,8 +30,6 @@ void setup() {
   // Configures static IP address
   if (!WiFi.config(local_IP, gateway, subnet)) {
     Serial.println("STA Failed to configure");
-    display.println("STA Failed to configure!");
-    display.display();
   }
   Serial.println();
   Serial.println("Connecting to ");
@@ -54,13 +52,17 @@ void setup() {
   });
 
   // Route to load style.css file
-  server.on("/index-48e69ebb.css", HTTP_GET, [](AsyncWebServerRequest *request){
+  server.on("/style.min.css", HTTP_GET, [](AsyncWebServerRequest *request){
     request->send(SPIFFS, "/style.min.css", "text/css");
   });
 
   // Route to load style.css file
-  server.on("/index-53285a5c.js", HTTP_GET, [](AsyncWebServerRequest *request){
+  server.on("/script.min.js", HTTP_GET, [](AsyncWebServerRequest *request){
     request->send(SPIFFS, "/script.min.js", "text/javascript");
+  });
+
+  server.on("/lights__icon.svg", HTTP_GET, [](AsyncWebServerRequest *request){
+    request->send(SPIFFS, "/lights__icon.svg");
   });
 
   //Send weather data from weather API
