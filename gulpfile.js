@@ -75,34 +75,34 @@ function watchFiles(){
 //Build production version
 function build(cb){
 
-    gulp.src('./src/sass/**/*.scss')
-		.pipe(sass().on('error', sass.logError))
-		.pipe(cleanCss({compatibility: 'ie8'}))
-		.on('error', console.error.bind(console))
-		.pipe(autoprefixer(
-						['> 1%',
-                        'last 2 versions',
-                        'firefox >= 4',
-                        'safari 7',
-                        'safari 8',
-                        'IE 8',
-                        'IE 9',
-                        'IE 10',
-                        'IE 11'],
-			{ cascade: false }))
-		.pipe(rename({suffix: '.min'}))
-		.pipe(gulp.dest('./ESP_SERVER/data/'));
+  gulp.src('./src/sass/**/*.scss')
+  .pipe(sass().on('error', sass.logError))
+  .pipe(cleanCss({compatibility: 'ie8'}))
+  .on('error', console.error.bind(console))
+  .pipe(autoprefixer(
+    ['> 1%',
+      'last 2 versions',
+      'firefox >= 4',
+      'safari 7',
+      'safari 8',
+      'IE 8',
+      'IE 9',
+      'IE 10',
+      'IE 11'],
+    { cascade: false }))
+  .pipe(rename({suffix: '.min'}))
+  .pipe(gulp.dest('./ESP_SERVER/data/'));
 
 	gulp.src('./src/js/script.js')
-        .pipe(uglify())
-        .pipe(rename({suffix: '.min'}))
-		.pipe(gulp.dest('./ESP_SERVER/data/'));
+  .pipe(uglify())
+  .pipe(rename({suffix: '.min'}))
+  .pipe(gulp.dest('./ESP_SERVER/data/'));
 
 	gulp.src('./src/assets/*.*')
-		.pipe( gulp.dest('./ESP_SERVER/data'));
+	.pipe( gulp.dest('./ESP_SERVER/data'));
 		
 	gulp.src('./index.html')
-			.pipe( gulp.dest('./ESP_SERVER/data') );
+	.pipe( gulp.dest('./ESP_SERVER/data') );
 	
 	cb();
 }
