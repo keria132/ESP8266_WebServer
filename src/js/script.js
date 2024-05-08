@@ -1,28 +1,22 @@
-console.log("hello");
-
-// const getWetherAPI = async () => {
-//   let response = await fetch("/getWeatherData");
-//   if (response.ok) {
-//     let json = await response.json();
-//   } else {
-//     console.log("HTTP error! " + response.status)
-//   }
-// }
-
 const getWetherData = async () => {
-  let response = await fetch("http://api.weatherapi.com/v1/current.json?key=44877cb0280f41d1a84130248241604&q=94.233.241.231&aqi=no")
+  const response = await fetch("http://api.weatherapi.com/v1/current.json?key=44877cb0280f41d1a84130248241604&q=auto:ip&aqi=no");
+
   if (response.ok) {
-    let json = await response.json();
+    const json = await response.json();
     console.log(json);
-    createWeatherWidget(json.current, json.location)
+    displayWeatherWidget(json.current, json.location);
   }
 }
 
-const createWeatherWidget = (weather, location) => {
-  const mainPageWidget = document.querySelector(".mainPageWidget");
-  mainPageWidget.innerHTML = `
-    <div class="mainPageWidget__icon">⛅</div>
-    <!-- <img class="mainPageWidget__icon" src="./src/assets/partly__cloudy.svg" alt=""> -->
+const displayWeatherWidget = (weather, location) => {
+  const weatherWidget = document.querySelector(".mainPageWidget");
+  const loader = document.querySelector(".loader");
+
+  weatherWidget.innerHTML = `
+    <!--<div class="mainPageWidget__icon">⛅</div>-->
+    <div class="mainPageWidget__icon">
+      <img src="${weather.condition.icon}">
+    </div>
     <h2 class="mainPageWidget__weather">${weather.condition.text}</h2>
     <small class="mainPageWidget__location">${location.region + ", " + location.country}</small>
     <p class="mainPageWidget__temperature">${weather.temp_c + "°"}</p>
@@ -43,6 +37,9 @@ const createWeatherWidget = (weather, location) => {
       <small>Wind</small>
     </span>
   `
+
+  weatherWidget.classList.toggle("mainPageWidget_loading");
+  loader.classList.toggle("loader_loaded");
 }
 
 getWetherData();
