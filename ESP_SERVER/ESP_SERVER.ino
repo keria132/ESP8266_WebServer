@@ -51,12 +51,20 @@ void setup() {
     request->send(SPIFFS, "/index.html", String(), false);
   });
 
+  server.on("/registration", HTTP_POST, [](AsyncWebServerRequest *request){
+    // request->send(SPIFFS, "/index.html", String(), false);
+  });
+
+  server.on("/login", HTTP_POST, [](AsyncWebServerRequest *request){
+    // request->send(SPIFFS, "/index.html", String(), false);
+  });
+
   // Route to load style.css file
   server.on("/style.min.css", HTTP_GET, [](AsyncWebServerRequest *request){
     request->send(SPIFFS, "/style.min.css", "text/css");
   });
 
-  // Route to load style.css file
+  // Route to load script.js file
   server.on("/script.min.js", HTTP_GET, [](AsyncWebServerRequest *request){
     request->send(SPIFFS, "/script.min.js", "text/javascript");
   });
@@ -131,4 +139,8 @@ void handle_getRelaysData(AsyncWebServerRequest *request){
 
 void handle_getWeatherData(AsyncWebServerRequest *request){
   
+}
+
+class ESP_device {
+
 }
