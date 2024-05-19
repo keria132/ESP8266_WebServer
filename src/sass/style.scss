@@ -9,10 +9,6 @@ body {
   color: hsl(0, 0%, 100%);
 }
 
-main {
-
-}
-
 .container {
   @media(min-width: 380px) {
       max-width: 380px;
@@ -20,7 +16,6 @@ main {
 }
 
 .main {
-  display: none !important;
   margin: auto;
   overflow: hidden;
   display: flex;
@@ -199,7 +194,7 @@ main {
 
 //LOGIN
 
-.loginForm {
+.loginForm, .registrationForm {
   display: flex;
   flex-flow: column nowrap;
   max-width: 300px;
@@ -211,7 +206,6 @@ main {
   gap: 0.5rem;
 
   &__labels {
-    // text-align: center;
     font-size: 1.5rem;
   }
 
@@ -219,20 +213,22 @@ main {
     padding: 5px 10px;
     border-radius: 5px;
     border: none;
+    height: 25px;
   }
 
   &__button {
     background-color: #3C6DE4;
-    // width: fit-cntent;
-    // margin: auto;
     margin-top: 10px;
     padding: 5px;
     border-radius: 5px;
     border: none;
     color: white;
     font: inherit;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
 
+  &__registration {
+    text-align: center;
+  }
   
 }

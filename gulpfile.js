@@ -13,13 +13,11 @@ const uglify = require("gulp-uglify");
 function sync(cd){
 
 	browserSync.init({
-
 		server: {
 			baseDir: './'
 		},
 		port: 1030
     })
-    
 	cd();
 }
 
@@ -103,7 +101,7 @@ function build(cb){
 		
 	gulp.src('./index.html')
 	.pipe( gulp.dest('./ESP_SERVER/data') );
-	
+
 	cb();
 }
 

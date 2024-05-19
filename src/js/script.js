@@ -9,6 +9,9 @@ const getBetterLocation = async () => {
 }
 
 const getWetherData = async () => {
+  if(!document.querySelector(".mainWidget")){
+    return;
+  }
   const locationString = await getBetterLocation();
   const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=44877cb0280f41d1a84130248241604&q=${locationString}&aqi=no`);
 
@@ -16,7 +19,7 @@ const getWetherData = async () => {
     const json = await response.json();
     console.log(json);
     displayWeatherWidget(json.current, json.location);
-  }
+  };
 }
 
 const displayWeatherWidget = (weather, location) => {
