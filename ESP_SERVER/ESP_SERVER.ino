@@ -138,9 +138,24 @@ void handle_getRelaysData(AsyncWebServerRequest *request){
 }
 
 void handle_getWeatherData(AsyncWebServerRequest *request){
-  
+  String weatherAPI = http://api.weatherapi.com/v1/current.json?key=44877cb0280f41d1a84130248241604&q=Pyatigorsk&aqi=no;
+
+  if (WiFi.status()== WL_CONNECTED) {
+    wifiClient client;
+    HTTPClient http;
+
+    http.begin(client, serverPath.c_str());
+    int httpResponseCode = http.GET();
+
+    if (httpResponseCode > 0) {
+      Serial.print("HTTP Response code: ");
+      Serial.println(httpResponseCode);
+      String payload = http.getString();
+      Serial.println(payload);
+    }
+  }
 }
 
 class ESP_device {
-
+  
 }

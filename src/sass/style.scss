@@ -16,7 +16,6 @@ body {
 }
 
 .main {
-  // display: none !important;
   margin: auto;
   overflow: hidden;
   display: flex;
@@ -195,11 +194,6 @@ body {
 
 //LOGIN
 
-.login__heading, .registration__heading {
-  text-align: center;
-  margin-top: 200px;
-}
-
 .loginForm, .registrationForm {
   display: flex;
   flex-flow: column nowrap;
@@ -218,12 +212,11 @@ body {
     padding: 5px 10px;
     border-radius: 5px;
     border: none;
+    height: 25px;
   }
 
   &__button {
     background-color: #3C6DE4;
-    width: fit-cntent;
-    margin: auto;
     margin-top: 10px;
     padding: 5px 20px;
     border-radius: 5px;
