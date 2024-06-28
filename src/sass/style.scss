@@ -199,7 +199,6 @@ body {
   flex-flow: column nowrap;
   max-width: 300px;
   margin: auto;
-  margin-top: 200px;
   background-color: #2E334B;
   padding: 1rem;
   border-radius: 10px;
@@ -219,7 +218,7 @@ body {
   &__button {
     background-color: #3C6DE4;
     margin-top: 10px;
-    padding: 5px;
+    padding: 5px 20px;
     border-radius: 5px;
     border: none;
     color: white;
